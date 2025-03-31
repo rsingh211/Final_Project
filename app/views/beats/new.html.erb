@@ -1,0 +1,11 @@
+<% content_for :title, "New beat" %>
+
+<h1>New beat</h1>
+
+<%= render "form", beat: @beat %>
+
+<br>
+
+<div>
+  <%= link_to "Back to beats", beats_path %>
+</div>

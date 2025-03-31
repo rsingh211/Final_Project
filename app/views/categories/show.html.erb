@@ -1,0 +1,20 @@
+<!-- app/views/categories/show.html.erb -->
+<h1><%= @category.name %> Beats</h1>
+
+<% if @beats.any? %>
+  <ul>
+    <% @beats.each do |beat| %>
+      <li>
+        <h3><%= beat.title %></h3>
+        <p><%= beat.description %></p>
+        <p>Genre: <%= beat.genre %></p>
+        <p>Price: $<%= beat.price %></p>
+        <p>License: <%= beat.license_type %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No beats available in this category.</p>
+<% end %>
+
+<%= link_to 'Back to Categories', categories_path %>

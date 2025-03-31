@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Beats" %>
+
+<h1>All Beats</h1>
+
+<div id="beats">
+  <% @beats.each do |beat| %>
+    <div class="beat-card">
+      <h3><%= link_to beat.title, beat_path(beat) %></h3>
+      <p><strong>Genre:</strong> <%= beat.genre %></p>
+      <p><strong>License:</strong> <%= beat.license_type %></p>
+      <p><strong>Price:</strong> $<%= beat.price %></p>
+
+      <%# Optional audio preview if available later %>
+      <%# <audio controls src="<%= beat.audio_url %>"></audio> %>
+
+      <%= link_to "View Details", beat_path(beat), class: "btn" %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Upload New Beat", new_beat_path, class: "btn btn-primary" %>
