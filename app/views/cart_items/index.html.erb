@@ -35,8 +35,13 @@
     <h3>Total: $<%= @total_price %></h3>
   </div>
 
-  <!-- Checkout Button -->
+ 
+  <!-- 🚀 Checkout Button -->
   <div class="checkout-button" style="text-align: right; margin-top: 20px;">
-    <%= link_to "Proceed to Checkout", checkout_path, class: "btn btn-primary" %>
+    <% if user_signed_in? %>
+      <%= link_to "Proceed to Checkout", user_checkout_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Proceed to Checkout", checkout_path, class: "btn btn-primary" %>
+    <% end %>
   </div>
 <% end %>

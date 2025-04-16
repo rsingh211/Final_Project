@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_16_025836) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_16_113444) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -93,13 +93,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_16_025836) do
     t.index ["province_id"], name: "index_customers_on_province_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "beat_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beat_id"], name: "index_order_items_on_beat_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.integer "customer_id"
     t.decimal "total"
     t.decimal "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -140,6 +152,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_16_025836) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "beats", "categories"
   add_foreign_key "customers", "provinces"
+  add_foreign_key "order_items", "beats"
+  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "users"
   add_foreign_key "users", "provinces"
 end

@@ -2,6 +2,9 @@ class Beat < ApplicationRecord
   has_one_attached :cover_image
   has_one_attached :audio_file
 
+  has_many :order_items
+  has_many :orders, through: :order_items
+
   belongs_to :category
 
   validates :title, :description, :genre, :price, :license_type, presence: true

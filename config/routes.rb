@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "user_checkouts/checkout"
+  get "user_checkouts/create"
   devise_for :users
   get "checkouts/new"
   get "checkouts/create"
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
   get "cart_items/destroy"
   get "pages/show"
   resources :beats
+  resources :orders, only: [:index]
 resources :categories, only: [:index, :show]
 resources :cart_items, only: [:create, :destroy] do
   patch :update_quantity, on: :collection
@@ -26,6 +29,10 @@ end
   get "/cart", to: "cart_items#index", as: :cart
   get '/checkout', to: 'checkouts#checkout', as: 'checkout'
 post "/checkout", to: "checkouts#create", as: :submit_checkout
+get '/user_checkout', to: 'user_checkouts#checkout'
+post '/user_checkout', to: 'user_checkouts#create', as: 'submit_user_checkout'
+get '/my_orders', to: 'orders#index', as: :user_orders
+
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

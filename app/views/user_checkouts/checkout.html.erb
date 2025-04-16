@@ -1,0 +1,28 @@
+<h1>User Checkout</h1>
+
+<%= form_with url: submit_user_checkout_path, method: :post, local: true do %>
+  <p><strong>Name:</strong> <%= current_user.name %></p>
+  <p><strong>Email:</strong> <%= current_user.email %></p>
+  <p><strong>Province:</strong> <%= current_user.province&.name || "N/A" %></p>
+
+
+  <h3>Order Summary</h3>
+  <ul>
+    <% @beats.each do |beat| %>
+      <li>
+        <strong><%= beat.title %></strong> — $<%= beat.price %> × <%= session[:cart][beat.id.to_s] %>
+      </li>
+    <% end %>
+  </ul>
+
+  <p><strong>Subtotal:</strong> $<%= @subtotal %></p>
+  <% if @gst %><p><strong>GST:</strong> $<%= @gst %></p><% end %>
+  <% if @pst %><p><strong>PST:</strong> $<%= @pst %></p><% end %>
+  <% if @hst %><p><strong>HST:</strong> $<%= @hst %></p><% end %>
+  <% if @qst %><p><strong>QST:</strong> $<%= @qst %></p><% end %>
+
+  <p><strong>Total Taxes:</strong> $<%= @total_tax %></p>
+  <p><strong>Total:</strong> $<%= @total %></p>
+
+  <%= submit_tag "Complete Order", class: "btn btn-primary" %>
+<% end %>

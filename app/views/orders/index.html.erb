@@ -1,0 +1,18 @@
+<h2>Your Order History</h2>
+
+<% @orders.each do |order| %>
+  <div class="order">
+    <h4>Order ID: <%= order.id %></h4>
+    <p><strong>Total:</strong> $<%= order.total %></p>
+    <p><strong>Tax:</strong> $<%= order.tax %></p>
+
+    <h5>Beats:</h5>
+    <ul>
+      <% order.beats.each do |beat| %>
+        <li><%= beat.title %> - $<%= beat.price %></li>
+      <% end %>
+    </ul>
+
+    <hr>
+  </div>
+<% end %>
