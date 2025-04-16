@@ -8,18 +8,26 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 #AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-genres = ["Hip-Hop", "Trap", "Lofi", "Drill"]
-genres.each { |name| Category.create!(name:) }
 
-10.times do |i|
-  Beat.create!(
-    title: "Beat #{i + 1}",
-    description: "🔥 A hard-hitting #{genres[i % 4]} beat.",
-    genre: genres[i % 4],
-    price: rand(20..60),
-    license_type: "Basic",
-    category: Category.all.sample
-  )
+[
+  { name: "AB", pst: 0.00, gst: 0.05, hst: 0.00, qst: 0.00 },
+  { name: "BC", pst: 0.07, gst: 0.05, hst: 0.00, qst: 0.00 },
+  { name: "MB", pst: 0.07, gst: 0.05, hst: 0.00, qst: 0.00 },
+  { name: "NB", pst: 0.00, gst: 0.00, hst: 0.15, qst: 0.00 },
+  { name: "NL", pst: 0.00, gst: 0.00, hst: 0.15, qst: 0.00 },
+  { name: "NS", pst: 0.00, gst: 0.00, hst: 0.15, qst: 0.00 },
+  { name: "NT", pst: 0.00, gst: 0.05, hst: 0.00, qst: 0.00 },
+  { name: "NU", pst: 0.00, gst: 0.05, hst: 0.00, qst: 0.00 },
+  { name: "ON", pst: 0.00, gst: 0.00, hst: 0.13, qst: 0.00 },
+  { name: "PE", pst: 0.00, gst: 0.00, hst: 0.15, qst: 0.00 },
+  { name: "QC", pst: 0.00, gst: 0.05, hst: 0.00, qst: 0.09975 },
+  { name: "SK", pst: 0.06, gst: 0.05, hst: 0.00, qst: 0.00 },
+  { name: "YT", pst: 0.00, gst: 0.05, hst: 0.00, qst: 0.00 }
+].each do |province|
+  Province.find_or_create_by!(name: province[:name]) do |p|
+    p.gst = province[:gst]
+    p.pst = province[:pst]
+    p.hst = province[:hst]
+    p.qst = province[:qst]
+  end
 end
-Page.create!(title: "About", content: "Info about Despised Beats.")
-Page.create!(title: "Contact", content: "Reach us at despisedbeats@email.com.")

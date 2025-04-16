@@ -1,10 +1,13 @@
-<!-- app/views/categories/index.html.erb -->
-<h1>Categories</h1>
+<% content_for :title, "Categories" %>
 
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, category_path(category) %>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1>Browse Categories</h1>
+
+  <ul class="category-list">
+    <% @categories.each do |category| %>
+      <li>
+        <%= link_to category.name, category_path(category), class: "category-link" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -2,93 +2,146 @@
 
 /* Base layout */
 body.active_admin {
-    background-color: #f0f2f5;
-    font-family: "Inter", "Helvetica Neue", sans-serif;
-    color: #2a2a2a;
-  }
-  
-  /* Top title bar */
-  #title_bar {
-    background-color: #1f2937;
-    color: #ffffff;
-    padding: 24px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  #title_bar h2 {
-    font-size: 22px;
-    font-weight: 600;
-    margin: 0;
-  }
-  
-  /* Buttons */
-  a.button, input[type="submit"], .action_item a {
-    background-color: #2563eb;
-    color: white !important;
-    padding: 10px 18px;
-    border-radius: 8px;
-    border: none;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    font-weight: 500;
-  }
-  a.button:hover, input[type="submit"]:hover, .action_item a:hover {
-    background-color: #1e40af;
-  }
-  
-  /* Tables */
-  .index_table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-  }
-  .index_table th,
-  .index_table td {
-    padding: 14px 20px;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .index_table tr:nth-child(even) {
-    background-color: #fafafa;
-  }
-  
-  /* Forms */
-  form {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  }
-  
-  /* Form inputs */
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 12px 14px;
-    margin-bottom: 20px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 15px;
-  }
-  
-  /* Flash messages */
-  .flash {
-    padding: 16px 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    font-weight: 500;
-  }
-  .flash.notice {
-    background-color: #dcfce7;
-    color: #166534;
-  }
-  .flash.alert {
-    background-color: #fee2e2;
-    color: #991b1b;
-  }
-  
+  background-color: #f0f2f5;
+  font-family: "Inter", "Helvetica Neue", sans-serif;
+  color: #2a2a2a;
+}
+
+/* Top title bar */
+#title_bar {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+#title_bar h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Buttons */
+a.button, input[type="submit"], .action_item a {
+  background-color: #2563eb;
+  color: white !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  font-weight: 500;
+}
+a.button:hover, input[type="submit"]:hover, .action_item a:hover {
+  background-color: #1e40af;
+}
+
+/* Tables */
+.index_table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+.index_table th,
+.index_table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.index_table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Forms */
+form {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* Flash messages */
+.flash {
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.flash.notice {
+  background-color: #dcfce7;
+  color: #166534;
+}
+.flash.alert {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.btn btn-danger {
+  background-color: #dc2626;
+  color: rgb(241, 2, 2) !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Button inside form (button_to) */
+form button.btn,
+form input[type="submit"].btn,
+form input[type="submit"].button,
+form button.button {
+background-color: #2563eb;
+color: white !important;
+padding: 10px 18px;
+border-radius: 8px;
+border: none;
+font-weight: 500;
+cursor: pointer;
+transition: background 0.3s ease;
+}
+
+form button.btn:hover,
+form input[type="submit"].btn:hover,
+form input[type="submit"].button:hover,
+form button.button:hover {
+background-color: #1e40af;
+}
+/* Button inside form (button_to) */
+form button.btn,
+form input[type="submit"].btn,
+form input[type="submit"].button,
+form button.button {
+background-color: #2563eb;
+color: white !important;
+padding: 10px 18px;
+border-radius: 8px;
+border: none;
+font-weight: 500;
+cursor: pointer;
+transition: background 0.3s ease;
+}
+
+form button.btn:hover,
+form input[type="submit"].btn:hover,
+form input[type="submit"].button:hover,
+form button.button:hover {
+background-color: #1e40af;
+}

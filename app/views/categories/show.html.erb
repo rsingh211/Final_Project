@@ -1,20 +1,20 @@
-<!-- app/views/categories/show.html.erb -->
-<h1><%= @category.name %> Beats</h1>
+<% content_for :title, @category.name %>
 
-<% if @beats.any? %>
-  <ul>
+<div class="container">
+  <h1><%= @category.name %> Beats</h1>
+
+  <% if @beats.any? %>
     <% @beats.each do |beat| %>
-      <li>
-        <h3><%= beat.title %></h3>
-        <p><%= beat.description %></p>
-        <p>Genre: <%= beat.genre %></p>
-        <p>Price: $<%= beat.price %></p>
-        <p>License: <%= beat.license_type %></p>
-      </li>
+      <div class="beat-card">
+        <h3><%= link_to beat.title, beat_path(beat) %></h3>
+        <p><strong>Genre:</strong> <%= beat.genre %></p>
+        <p><strong>License:</strong> <%= beat.license_type %></p>
+        <p><strong>Price:</strong> $<%= beat.price %></p>
+      </div>
     <% end %>
-  </ul>
-<% else %>
-  <p>No beats available in this category.</p>
-<% end %>
 
-<%= link_to 'Back to Categories', categories_path %>
+    <%= paginate @beats %>
+  <% else %>
+    <p>No beats found in this category.</p>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+<h1>Your Cart</h1>
+
+<% if @beats.present? && @beats.any? %>
+  <% @beats.each do |beat| %>
+    <div class="cart-item">
+      <h3><%= beat.title %></h3>
+      <p><strong>Price:</strong> $<%= beat.price %></p>
+
+      <div class="cart-actions">
+        <%= form_with url: update_quantity_cart_items_path, method: :patch, local: true, class: "update-form" do %>
+          <%= hidden_field_tag :beat_id, beat.id %>
+          <label for="quantity_<%= beat.id %>">Quantity:</label>
+          <%= number_field_tag :quantity, session[:cart][beat.id.to_s], min: 1, class: "quantity-input", id: "quantity_#{beat.id}" %>
+          <%= submit_tag "Update", class: "btn btn-small" %>
+        <% end %>
+
+        <%= button_to "Remove", cart_item_path(beat.id), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+
+  <!-- ✅ Total Section -->
+  <div class="cart-total">
+    <h3>Total: $<%= @total_price %></h3>
+  </div>
+
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>
+
+<% if @beats.present? && @beats.any? %>
+  <!-- Total -->
+  <div class="cart-total">
+    <h3>Total: $<%= @total_price %></h3>
+  </div>
+
+  <!-- Checkout Button -->
+  <div class="checkout-button" style="text-align: right; margin-top: 20px;">
+    <%= link_to "Proceed to Checkout", checkout_path, class: "btn btn-primary" %>
+  </div>
+<% end %>

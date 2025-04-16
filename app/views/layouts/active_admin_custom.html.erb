@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'active_admin', media: 'all' %>
+    <%= javascript_include_tag 'active_admin' %> <!-- ensures rails-ujs loads -->
+  </head>
+
+  <body class="<%= controller.class.name.gsub("::", "_").underscore %> <%= action_name %>">
+    <div id="wrapper">
+      <%= yield %>
+    </div>
+  </body>
+</html>

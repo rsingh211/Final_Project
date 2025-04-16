@@ -1,7 +1,16 @@
 ActiveAdmin.register Beat do
   permit_params :title, :description, :genre, :price, :license_type, :category_id
 
-  # Filters
+  #action_item :delete, only: :show do
+    #button_to "Delete Beat",
+   #           resource_path(resource),
+   #           method: :delete,
+   #           data: { turbo_confirm: "Are you sure you want to delete this beat?" },
+   #           class: "btn btn-danger"
+  #end
+  
+
+  # Filter
   filter :title
   filter :genre
   filter :price

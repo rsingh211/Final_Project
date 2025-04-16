@@ -1,23 +1,62 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Beats" %>
+<p style="color: green"><%= notice %></p>
 
 <h1>All Beats</h1>
 
+<!-- 2.6 Advanced Search -->
+<h2>Advanced Search</h2>
+<%= form_with url: beats_path, method: :get, local: true, class: "filter-form" do %>
+  <div class="form-group">
+    <label for="query">Keyword:</label>
+    <%= text_field_tag :query, params[:query], placeholder: "Search titles", class: "form-select" %>
+  </div>
+
+  <div class="form-group">
+    <label for="category_id">Category:</label>
+    <%= select_tag :category_id,
+        options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
+        prompt: "All Categories",
+        class: "form-select" %>
+  </div>
+
+  <div class="form-group">
+    <label for="filter">Status:</label>
+    <%= select_tag :filter, options_for_select([
+        ['All', ''],
+        ['New Beats (last 3 days)', 'new'],
+        ['Recently Updated (excluding new)', 'recently_updated']
+      ], params[:filter]), class: "form-select" %>
+  </div>
+
+  <%= submit_tag "Search", class: "btn" %>
+<% end %>
+
+<hr>
+
+<!-- Beat List -->
 <div id="beats">
-  <% @beats.each do |beat| %>
-    <div class="beat-card">
-      <h3><%= link_to beat.title, beat_path(beat) %></h3>
-      <p><strong>Genre:</strong> <%= beat.genre %></p>
-      <p><strong>License:</strong> <%= beat.license_type %></p>
-      <p><strong>Price:</strong> $<%= beat.price %></p>
+  <% if @beats.any? %>
+    <% @beats.each do |beat| %>
+      <div class="beat-card">
+        <h3>
+          <%= link_to beat.title, beat_path(beat) %>
+          <% if beat.created_at >= 3.days.ago %>
+            <span class="badge badge-new">New</span>
+          <% elsif beat.updated_at >= 3.days.ago %>
+            <span class="badge badge-updated">Updated</span>
+          <% end %>
+        </h3>
+        <p><strong>Genre:</strong> <%= beat.genre %></p>
+        <p><strong>Category:</strong> <%= beat.category&.name || "Uncategorized" %></p>
+        <p><strong>License:</strong> <%= beat.license_type %></p>
+        <p><strong>Price:</strong> $<%= beat.price %></p>
 
-      <%# Optional audio preview if available later %>
-      <%# <audio controls src="<%= beat.audio_url %>"></audio> %>
+        <%= link_to "View Details", beat_path(beat), class: "btn" %>
+      </div>
+    <% end %>
 
-      <%= link_to "View Details", beat_path(beat), class: "btn" %>
-    </div>
+    <%= paginate @beats %>
+  <% else %>
+    <p>No beats found for the selected filters.</p>
   <% end %>
 </div>
-
-<%= link_to "Upload New Beat", new_beat_path, class: "btn btn-primary" %>

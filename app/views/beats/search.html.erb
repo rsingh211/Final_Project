@@ -1,0 +1,36 @@
+<h1>Search Beats</h1>
+
+<%= form_with url: search_beats_path, method: :get, local: true do |form| %>
+  <div class="filter-form">
+    <div class="form-group">
+      <%= label_tag :query, "Search by keyword:" %>
+      <%= text_field_tag :query, params[:query], placeholder: "e.g. chill, trap, piano", class: "form-select" %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :category_id, "Filter by Category:" %>
+      <%= select_tag :category_id,
+            options_for_select([["All Categories", ""]] + @categories.map { |c| [c.name, c.id] }, params[:category_id]),
+            class: "form-select" %>
+    </div>
+
+    <%= submit_tag "Search", class: "btn" %>
+  </div>
+<% end %>
+
+<hr>
+
+<% if @beats.present? %>
+  <% @beats.each do |beat| %>
+    <div class="beat-card">
+      <h3><%= link_to beat.title, beat_path(beat) %></h3>
+      <p><strong>Genre:</strong> <%= beat.genre %></p>
+      <p><strong>Category:</strong> <%= beat.category&.name || "Uncategorized" %></p>
+      <p><strong>License:</strong> <%= beat.license_type %></p>
+      <p><strong>Price:</strong> $<%= beat.price %></p>
+      <%= link_to "View Details", beat_path(beat), class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No results found.</p>
+<% end %>

@@ -1,0 +1,52 @@
+<h1>Checkout</h1>
+
+<!-- 🌐 Province Selection (GET form to refresh taxes) -->
+<%= form_with url: checkout_path, method: :get, local: true do %>
+  <div class="form-group">
+    <label for="province_id">Select Your Province</label>
+    <%= select_tag :province_id,
+      options_from_collection_for_select(@provinces, :id, :name, @selected_province&.id),
+      class: "form-control",
+      onchange: "this.form.submit();" %>
+  </div>
+<% end %>
+
+<hr>
+
+<!-- 🧾 Checkout Form (POST to submit order) -->
+<%= form_with url: submit_checkout_path, method: :post, local: true do %>
+  <div class="form-group">
+    <label for="name">Full Name</label>
+    <%= text_field_tag :name, nil, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <%= email_field_tag :email, nil, class: "form-control", required: true %>
+  </div>
+
+  <!-- Save the selected province_id as hidden input -->
+  <%= hidden_field_tag :province_id, @selected_province&.id %>
+
+  <h3>Order Summary</h3>
+  <ul>
+    <% @beats.each do |beat| %>
+      <li>
+        <strong><%= beat.title %></strong>
+        — $<%= beat.price %> × <%= session[:cart][beat.id.to_s] %>
+      </li>
+    <% end %>
+  </ul>
+
+  <p><strong>Subtotal:</strong> $<%= @subtotal %></p>
+
+  <% if @gst %><p><strong>GST:</strong> $<%= @gst %></p><% end %>
+  <% if @pst %><p><strong>PST:</strong> $<%= @pst %></p><% end %>
+  <% if @hst %><p><strong>HST:</strong> $<%= @hst %></p><% end %>
+  <% if @qst %><p><strong>QST:</strong> $<%= @qst %></p><% end %>
+
+  <p><strong>Total Taxes:</strong> $<%= @total_tax %></p>
+  <p><strong>Total:</strong> $<%= @total %></p>
+
+  <%= submit_tag "Complete Order", class: "btn btn-primary" %>
+<% end %>

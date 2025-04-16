@@ -1,10 +1,42 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @beat %>
+<div class="beat-show container">
+  <h1><%= @beat.title %></h1>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <div class="beat-meta">
+    <p><strong>Genre:</strong> <%= @beat.genre %></p>
+    <p><strong>Category:</strong> <%= @beat.category&.name || "Uncategorized" %></p>
+    <p><strong>License:</strong> <%= @beat.license_type %></p>
+    <p><strong>Price:</strong> $<%= @beat.price %></p>
+  </div>
 
-<div>
-  <%= link_to "Edit this beat", edit_beat_path(@beat) %> |
-  <%= link_to "Back to beats", beats_path %>
+  <hr>
 
-  <%= button_to "Destroy this beat", @beat, method: :delete, data: { confirm: "Are you sure?" } %>
+  <div class="beat-description">
+    <p><strong>Description:</strong></p>
+    <p><%= simple_format(@beat.description) %></p>
+  </div>
+
+  <hr>
+
+  <div class="beat-dates">
+    <p><small><strong>Uploaded:</strong> <%= @beat.created_at.strftime("%B %d, %Y") %></small></p>
+    <p><small><strong>Last Updated:</strong> <%= @beat.updated_at.strftime("%B %d, %Y") %></small></p>
+  </div>
+
+  <br>
+  <div class="button-group">
+  <%= link_to "← Back to All Beats", beats_path, class: "btn back-btn" %>
+
+<% session[:cart] ||= {} %>
+
+<% if session[:cart].key?(@beat.id.to_s) %>
+  <button class="btn added-btn" disabled>✔ Added to Cart</button>
+<% else %>
+  <%= button_to "Add to Cart", cart_items_path(beat_id: @beat.id), method: :post, class: "btn add-btn" %>
+<% end %>
+
+
+
+
+
 </div>

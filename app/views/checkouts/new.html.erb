@@ -1,0 +1,55 @@
+<h1>Checkout</h1>
+
+<%= form_with url: checkout_path, method: :get, local: true do %>
+  <div class="form-group">
+    <label for="name">Full Name</label>
+    <%= text_field_tag :name, params[:name], class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <%= email_field_tag :email, params[:email], class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <label for="province">Province</label>
+    <%= select_tag :province, options_for_select(["MB", "ON", "BC", "AB", "QC", "NS"], selected: @province),
+                   onchange: "this.form.submit()", class: "form-control", required: true %>
+  </div>
+<% end %>
+
+<hr>
+
+<h3>Order Summary</h3>
+<ul>
+  <% session[:cart].each do |id, qty| %>
+    <% beat = Beat.find_by(id: id) %>
+    <% next unless beat %>
+    <li><strong><%= beat.title %></strong> — $<%= beat.price %> × <%= qty %></li>
+  <% end %>
+</ul>
+
+<p><strong>Subtotal:</strong> $<%= @subtotal %></p>
+<% if @gst %>
+  <p><strong>GST:</strong> $<%= @gst %></p>
+<% end %>
+<% if @pst %>
+  <p><strong>PST:</strong> $<%= @pst %></p>
+<% end %>
+<% if @hst %>
+  <p><strong>HST:</strong> $<%= @hst %></p>
+<% end %>
+<% if @qst %>
+  <p><strong>QST:</strong> $<%= @qst %></p>
+<% end %>
+
+<p><strong>Total Taxes:</strong> $<%= @total_tax %></p>
+<p><strong>Total:</strong> $<%= @total %></p>
+
+<%= form_with url: submit_checkout_path, method: :post, local: true do %>
+  <%= hidden_field_tag :name, params[:name] %>
+  <%= hidden_field_tag :email, params[:email] %>
+  <%= hidden_field_tag :province, @province %>
+
+  <%= submit_tag "Complete Order", class: "btn btn-primary" %>
+<% end %>
