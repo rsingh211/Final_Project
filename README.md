@@ -28,3 +28,4 @@ Things you may want to cover:
 # milestone 5
 # milestone 6
 # milestone 7
+# milestone 8
