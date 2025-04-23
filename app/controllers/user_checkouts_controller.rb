@@ -9,7 +9,7 @@ class UserCheckoutsController < ApplicationController
 
     @subtotal = @beats.sum { |beat| beat.price * @cart[beat.id.to_s] }
 
-    @province = current_user.province.name || "MB" # Assuming user has province association
+    @province = current_user.province.name || "MB" # fallback
     tax_rates = get_tax_rates(@province)
 
     @gst = (@subtotal * tax_rates[:gst]).round(2) if tax_rates[:gst]
@@ -28,13 +28,14 @@ class UserCheckoutsController < ApplicationController
 
     province = current_user.province.name || "MB"
     tax_rates = get_tax_rates(province)
-    tax_amount = subtotal * tax_rates.values.sum
+    tax_amount = subtotal * tax_rates.values.compact.sum
     total = subtotal + tax_amount
 
     order = Order.create!(
       user: current_user,
       total: total.round(2),
-      tax: tax_amount.round(2)
+      tax: tax_amount.round(2),
+      paid: false
     )
 
     cart.each do |beat_id, quantity|
@@ -45,8 +46,53 @@ class UserCheckoutsController < ApplicationController
       )
     end
 
+    # Create Stripe Checkout session
+    stripe_session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: [{
+        price_data: {
+          currency: 'cad',
+          product_data: {
+            name: "Order ##{order.id}"
+          },
+          unit_amount: (total * 100).to_i
+        },
+        quantity: 1
+      }],
+      success_url: "http://127.0.0.1:3000/checkout/success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "http://127.0.0.1:3000/checkout/cancel"
+    )
+    
+
+
+    order.update(payment_session_id: stripe_session.id)
+
+    redirect_to stripe_session.url, allow_other_host: true
+  end
+
+  def success
+    session_id = params[:session_id]
+    stripe_session = Stripe::Checkout::Session.retrieve(session_id)
+
+    order = Order.find_by(payment_session_id: stripe_session.id)
+    if order
+      order.update(
+        paid: true,
+        stripe_payment_id: stripe_session.payment_intent
+      )
+      flash[:notice] = "Payment successful. Thank you!"
+    else
+      flash[:alert] = "Could not verify payment session."
+    end
+
     session[:cart] = {}
-    redirect_to root_path, notice: "Order placed successfully!"
+    redirect_to root_path
+  end
+
+  def cancel
+    flash[:alert] = "Payment was canceled."
+    redirect_to cart_path
   end
 
   private

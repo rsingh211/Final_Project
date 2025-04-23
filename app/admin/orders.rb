@@ -1,5 +1,6 @@
 ActiveAdmin.register Order do
-  # 👇 Optional filters or config
+  # Disable filters until you want to add back only safe ones
+  config.filters = false
 
   index do
     selectable_column
@@ -50,8 +51,27 @@ ActiveAdmin.register Order do
         end
       end
 
+      row "Tax Breakdown" do |order|
+        province = order.user&.province || order.customer&.province
+        subtotal = order.total - order.tax
+        breakdown = []
+
+        if province.present?
+          breakdown << "GST: $#{(subtotal * province.gst).round(2)}" if province.gst.to_f > 0
+          breakdown << "PST: $#{(subtotal * province.pst).round(2)}" if province.pst.to_f > 0
+          breakdown << "HST: $#{(subtotal * province.hst).round(2)}" if province.hst.to_f > 0
+          breakdown << "QST: $#{(subtotal * province.qst).round(2)}" if province.qst.to_f > 0
+          breakdown.join(", ").html_safe
+        else
+          "No province info available"
+        end
+      end
+
       row :tax
       row :total
+      row :stripe_payment_id
+      
+
     end
   end
 end

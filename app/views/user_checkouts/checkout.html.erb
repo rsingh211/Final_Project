@@ -1,10 +1,9 @@
 <h1>User Checkout</h1>
 
-<%= form_with url: submit_user_checkout_path, method: :post, local: true do %>
+<%= form_with url: submit_user_checkout_path, method: :post do %>
   <p><strong>Name:</strong> <%= current_user.name %></p>
   <p><strong>Email:</strong> <%= current_user.email %></p>
   <p><strong>Province:</strong> <%= current_user.province&.name || "N/A" %></p>
-
 
   <h3>Order Summary</h3>
   <ul>
@@ -24,5 +23,6 @@
   <p><strong>Total Taxes:</strong> $<%= @total_tax %></p>
   <p><strong>Total:</strong> $<%= @total %></p>
 
-  <%= submit_tag "Complete Order", class: "btn btn-primary" %>
+  <%= submit_tag "Complete Order", class: "btn btn-primary", data: { turbo: false } %>
+
 <% end %>

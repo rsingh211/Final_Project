@@ -21,6 +21,8 @@ gem 'activeadmin'
 gem 'faker'
 # Gemfile
 gem 'kaminari'
+gem 'stripe'
+
 
 
 

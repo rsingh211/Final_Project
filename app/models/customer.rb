@@ -1,3 +1,4 @@
 class Customer < ApplicationRecord
-    has_many :orders
+  belongs_to :province  
+  has_many :orders
   end

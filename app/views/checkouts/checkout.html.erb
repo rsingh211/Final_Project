@@ -14,7 +14,8 @@
 <hr>
 
 <!-- 🧾 Checkout Form (POST to submit order) -->
-<%= form_with url: submit_checkout_path, method: :post, local: true do %>
+<%= form_with url: submit_user_checkout_path, method: :post, local: true, data: { turbo: false } do %>
+
   <div class="form-group">
     <label for="name">Full Name</label>
     <%= text_field_tag :name, nil, class: "form-control", required: true %>
@@ -49,4 +50,6 @@
   <p><strong>Total:</strong> $<%= @total %></p>
 
   <%= submit_tag "Complete Order", class: "btn btn-primary" %>
+  <script src="https://js.stripe.com/v3/"></script>
+
 <% end %>

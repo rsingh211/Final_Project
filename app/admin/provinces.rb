@@ -18,7 +18,6 @@ ActiveAdmin.register Province do
     form do |f|
       f.inputs do
         f.input :name
-        f.input :code
         f.input :gst
         f.input :pst
         f.input :hst
