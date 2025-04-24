@@ -5,6 +5,10 @@ after_initialize :set_default_status, if: :new_record?
 belongs_to :customer, optional: true
 belongs_to :user, optional: true
 
+validates :total, presence: true, numericality: true
+  validates :tax, presence: true, numericality: true
+  validates :status, presence: true, inclusion: { in: %w[new paid shipped] }
+
 before_validation :set_default_status, on: :create
 
 has_many :order_items

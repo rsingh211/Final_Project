@@ -31,7 +31,10 @@ class CartItemsController < ApplicationController
     session[:cart][beat_id] ||= 0
     session[:cart][beat_id] += 1
 
-    redirect_back fallback_location: beats_path, notice: "Beat added to cart!"
+    beat = Beat.find_by(id: beat_id)
+    flash[:notice] = "🔥 '#{beat&.title || "Beat"}' added to cart! Keep building your fire playlist!"
+    redirect_back fallback_location: beats_path
+
   end
 
   def update_quantity

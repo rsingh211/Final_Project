@@ -48,6 +48,9 @@ class CheckoutsController < ApplicationController
     )
 
     session[:cart] = {}
+    OrderMailer.order_confirmation(order).deliver_now
     redirect_to root_path, notice: "Order placed successfully!"
+    
+
   end
 end
