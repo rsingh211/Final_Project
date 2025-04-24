@@ -1,331 +1,293 @@
 /* ==== Global ==== */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f7f7f7;
-    color: #222;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1, h2, h3 {
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-  }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  a:hover {
-    color: #2563eb;
-  }
-  
-  /* ==== Main Container ==== */
-  #beats {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  /* ==== Category Navigation (2.2) ==== */
-  .category-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
-  }
-  
-  .category-link {
-    padding: 0.4rem 0.8rem;
-    background: #f3f4f6;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #1f2937;
-    font-weight: 500;
-    transition: background 0.2s ease;
-  }
-  
-  .category-link:hover {
-    background: #e5e7eb;
-    color: #111827;
-  }
-  
-  /* ==== Filter Form (2.6) ==== */
-  .filter-form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 1rem;
-    margin: 20px 0;
-    background: white;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-  }
-  
-  .filter-form .form-group {
-    flex: 1;
-    min-width: 200px;
-  }
-  
-  .form-select {
-    width: 100%;
-    padding: 0.6rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    background-color: white;
-  }
-  
-  /* ==== Buttons ==== */
-  .btn {
-    background: #2563eb;
-    color: white !important;
-    padding: 0.6rem 1.4rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.2s ease;
-  }
-  
-  .btn:hover {
-    background: #1d4ed8;
-  }
-  
-  .btn-outline-secondary {
-    background: transparent;
-    border: 2px solid #2563eb;
-    color: #2563eb;
-  }
-  
-  .btn-outline-secondary:hover {
-    background: #2563eb;
-    color: white;
-  }
-  
-  /* ==== Beat Cards ==== */
-  .beat-card {
-    border: 1px solid #eaeaea;
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
-    background-color: white;
-  }
-  
-  .beat-card h3 {
-    margin-top: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f7f7;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: #2563eb;
+}
+
+/* ==== Main Container ==== */
+#beats {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ==== Category Navigation ==== */
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.category-link {
+  padding: 0.4rem 0.8rem;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.category-link:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* ==== Filter Form ==== */
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 20px 0;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.filter-form .form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: white;
+}
+
+/* ==== Buttons ==== */
+.btn {
+  background: #2563eb;
+  color: white !important;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+.btn-outline-secondary {
+  background: transparent;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+}
+
+.btn-outline-secondary:hover {
+  background: #2563eb;
+  color: white;
+}
+
+/* ==== Beat Cards ==== */
+.beat-card {
+  border: 1px solid #eaeaea;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  background-color: white;
+}
+
+.beat-card h3 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.beat-card p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+/* ==== Badge Labels ==== */
+.badge-new {
+  background-color: #22c55e;
+  color: white;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.badge-updated {
+  background-color: #facc15;
+  color: #1a1a1a;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+/* ==== Navbar ==== */
+.navbar {
+  background-color: #1f2937;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: #d1d5db;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+/* ==== Static Pages ==== */
+.static-page.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.static-page h1 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.page-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ==== Button Group ==== */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.back-btn, .add-btn {
+  background-color: #2563eb;
+  color: white;
+}
+
+.back-btn:hover, .add-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.added-btn {
+  background-color: #10b981;
+  color: white;
+  cursor: default;
+}
+
+#mobile-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+
+/* ==== Responsive Breakpoints ==== */
+/* ==== Responsive Fix for Navbar ==== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
     font-size: 1.6rem;
-    margin-bottom: 0.8rem;
-    color: #1f2937;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .beat-card p {
-    margin: 0.4rem 0;
-    font-size: 0.95rem;
-  }
-  
-  /* ==== Badge Labels ==== */
-  .badge-new,
-  .badge-updated {
-    padding: 2px 8px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: 4px;
-    display: inline-block;
-  }
-  
-  .badge-new {
-    background-color: #22c55e;
+    background: none;
+    border: none;
     color: white;
-  }
-  
-  .badge-updated {
-    background-color: #facc15;
-    color: #1a1a1a;
+    cursor: pointer;
   }
 
-  /* ==== Navbar ==== */
-.navbar {
+  #mobile-menu {
+    display: none; /* hide by default on mobile */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
     background-color: #1f2937;
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 999;
+    border-top: 1px solid #374151;
   }
-  
-  .nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
+
+  #mobile-menu.open {
     display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+  }
+
+  .nav-link {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #374151;
+    color: #d1d5db;
+  }
+
+  .nav-container {
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
-  
-  .nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .nav-link {
-    color: #d1d5db;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-  
-  .nav-link:hover {
-    color: #ffffff;
-  }
-  
-  @media (max-width: 640px) {
-    .nav-container {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.8rem;
-    }
-  
-    .nav-links {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .nav-link {
-      width: 100%;
-      padding: 0.5rem 0;
-    }
-  }
-  
-  .static-page.container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  }
-  
-  .static-page h1 {
-    font-size: 2rem;
-    color: #1f2937;
-    margin-bottom: 1rem;
-  }
-  
-  .page-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
-  }
-  
-  .category-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-  }
-  
-  .category-link {
-    display: block;
-    padding: 12px 16px;
-    margin-bottom: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    color: #2563eb;
-    font-weight: 500;
-    transition: background 0.2s ease;
-  }
-  
-  .category-link:hover {
-    background: #f0f4ff;
-    color: #1d4ed8;
-  }
-
-  /* Button Group Container */
-.button-group {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap; /* ensures buttons stack on small screens */
-  }
-  
-  .button-group {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    align-items: center;
-  }
-  
-  /* Base button style */
-  .btn {
-    padding: 0.6rem 1.4rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-  }
-  
-  /* Back to Beats */
-  .back-btn {
-    background-color: #2563eb;
-    color: white;
-  }
-  
-  .back-btn:hover {
-    background-color: #1d4ed8;
-  }
-  
-  /* Add to Cart */
-  .add-btn {
-    background-color: #2563eb;
-    color: white;
-  }
-  
-  .add-btn:hover {
-    background-color: #1d4ed8;
-  }
-  
-  /* Added to Cart */
-  .added-btn {
-    background-color: #10b981;
-    color: white;
-    cursor: default;
-  }
-  
-
-  
-  
-  /* ==== Responsive ==== */
-    @media (max-width: 768px) {
-        .filter-form {
-        flex-direction: column;
-        }
-    
-        .filter-form .form-group {
-        width: 100%;
-        }
-    
-        .beat-card {
-        padding: 1rem;
-        }
-    }
+}

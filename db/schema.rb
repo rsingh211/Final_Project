@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_18_164547) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_23_221720) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -99,6 +99,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_18_164547) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "unit_price"
     t.index ["beat_id"], name: "index_order_items_on_beat_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
@@ -113,6 +114,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_18_164547) do
     t.string "payment_session_id"
     t.string "stripe_payment_id"
     t.boolean "paid"
+    t.string "status"
+    t.decimal "gst"
+    t.decimal "pst"
+    t.decimal "hst"
+    t.decimal "qst"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

@@ -1,0 +1,23 @@
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">Despised Beats</a>
+    <button class="nav-toggle" id="nav-toggle">&#9776;</button>
+
+    <div class="nav-links" id="mobile-menu">
+      <%= link_to "About", about_path, class: "nav-link" %>
+      <%= link_to "Contact", contact_path, class: "nav-link" %>
+      <%= link_to "All Beats", beats_path, class: "nav-link" %>
+      <%= link_to "Categories", categories_path, class: "nav-link" %>
+      <%= link_to "Cart (#{(@cart&.size || 0)})", cart_path, class: "nav-link" %>
+      <%= link_to "Admin Login", new_admin_user_session_path, class: "nav-link" %>
+      <%= link_to "My Orders", orders_path, class: "nav-link" %>
+
+      <% if user_signed_in? && current_user.is_a?(User) %>
+        <span class="nav-link">Welcome, <%= current_user.email %></span>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -1,11 +1,16 @@
 ActiveAdmin.register Order do
   # Disable filters until you want to add back only safe ones
   config.filters = false
+  permit_params :status, :paid
+  
 
   index do
     selectable_column
     id_column
     column :created_at
+    column :status do |order|
+      status_tag order.status, class: order.status
+    end
 
     column "Buyer" do |order|
       if order.user
@@ -17,6 +22,7 @@ ActiveAdmin.register Order do
       end
     end
 
+
     column "Beats" do |order|
       order.order_items.map do |item|
         "#{item.beat.title} ×#{item.quantity}"
@@ -26,6 +32,13 @@ ActiveAdmin.register Order do
     column :tax
     column :total
     actions
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :status, as: :select, collection: Order::STATUSES
+    end
+    f.actions
   end
 
   show do
@@ -66,6 +79,7 @@ ActiveAdmin.register Order do
           "No province info available"
         end
       end
+
 
       row :tax
       row :total

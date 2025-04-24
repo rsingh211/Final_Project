@@ -1,0 +1,10 @@
+<h3>Order Summary</h3>
+<ul>
+  <% order.order_items.each do |item| %>
+    <li><%= item.beat.title %> — $<%= item.unit_price %> × <%= item.quantity %></li>
+  <% end %>
+</ul>
+
+<p><strong>Subtotal:</strong> $<%= order.total - order.tax %></p>
+<p><strong>Tax:</strong> $<%= order.tax %></p>
+<p><strong>Total:</strong> $<%= order.total %></p>

@@ -79,6 +79,7 @@ class UserCheckoutsController < ApplicationController
     if order
       order.update(
         paid: true,
+        status: 'paid',
         stripe_payment_id: stripe_session.payment_intent
       )
       flash[:notice] = "Payment successful. Thank you!"
